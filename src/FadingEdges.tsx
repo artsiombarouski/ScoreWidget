@@ -4,6 +4,10 @@ import React from "react";
 import LinearGradient from "react-native-linear-gradient";
 import { ViewStyle } from "react-native";
 
+/**
+ * Helper component to apply fading edges to all sides
+ */
+
 export interface FadingEdgesProps {
   color?: string;
   leftStyle?: ViewStyle;

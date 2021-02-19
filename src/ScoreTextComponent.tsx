@@ -3,6 +3,10 @@
 import { Animated, StyleProp, StyleSheet, Text, TextStyle, View, ViewStyle } from "react-native";
 import React from "react";
 
+/**
+ * Component for display text with rotating effect
+ */
+
 export interface ScoreTextComponentProps {
   value: string;
   containerStyle?: ViewStyle;
@@ -40,7 +44,6 @@ export class ScoreTextComponent extends React.Component<ScoreTextComponentProps,
   ) => (letter: string, index: number) => {
     return (
       <Animated.View
-        renderToHardwareTextureAndroid={true}
         key={letter + index}
         style={{
           flex: 1,
@@ -57,7 +60,7 @@ export class ScoreTextComponent extends React.Component<ScoreTextComponentProps,
           }}
           textBreakStrategy={"simple"}
           adjustsFontSizeToFit={true}
-          minimumFontScale={0.01}
+          minimumFontScale={0.1}
           numberOfLines={1}>
           <Text style={scoreTextWidgetStyle.hiddenTextStyle}>
             {props.value.substring(0, index)}

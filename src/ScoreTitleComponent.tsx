@@ -4,6 +4,10 @@ import { ScoreData } from "./tempData";
 import { Animated, TextStyle, View, ViewStyle } from "react-native";
 import React from "react";
 
+/**
+ * Component for display 'ScoreData' title
+ */
+
 export interface ScoreTitleComponentProps {
   data: ScoreData;
   selfSize: number;

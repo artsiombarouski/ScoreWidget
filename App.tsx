@@ -17,7 +17,7 @@ const App = () => {
 };
 
 LogBox.ignoreLogs([
-  "VirtualizedLists should never be nested" // TODO: Remove when fixed
+  "VirtualizedLists should never be nested"
 ]);
 
 export default App;

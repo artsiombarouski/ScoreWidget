@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React from "react";
+import React, { useRef } from "react";
 import { SafeAreaView, ScrollView, StatusBar, Text, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native";
 import { AllScenes, ArrowRight, ContactUs, Invite, Join, Like, Settings } from "../assets/images";
 import { appBarTheme, appColors, appTheme, optionsTheme } from "./styles";
@@ -166,12 +166,13 @@ export interface ProfilePageProps {
 }
 
 export const ProfilePage = (props: ProfilePageProps) => {
+  const scrollRef = useRef<ScrollView>(null);
   return (
     <SafeAreaView style={{
       ...appTheme.rootPage,
       paddingTop: StatusBar.currentHeight
     }}>
-      <ScrollView>
+      <ScrollView ref={scrollRef}>
         <AppBar title={
           <Text style={appBarTheme.title}>
             <Text style={{ color: appColors.primary }}>my</Text>
@@ -183,7 +184,11 @@ export const ProfilePage = (props: ProfilePageProps) => {
         <Headline value={"Example with FlatList"} />
         {createScoreWidgetImpl()}
         <Headline value={"Example with pure React Native"} />
-        {createScoreWidget2Impl()}
+        {createScoreWidget2Impl({
+          onScrollStateChanged: (scrolling) => {
+            scrollRef.current?.setNativeProps({ scrollEnabled: !scrolling });
+          }
+        })}
         <OptionRow icon={<Like style={optionsTheme.icon} />} title={"Favourite"} />
         <OptionRow icon={<AllScenes style={optionsTheme.icon} />} title={"All scenes"} />
         <OptionRow icon={<Join style={optionsTheme.icon} />} title={"Join loóna family"} />

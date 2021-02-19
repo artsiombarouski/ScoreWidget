@@ -19,6 +19,10 @@ import {
 import { Animated, View } from "react-native";
 import React from "react";
 
+/**
+ * Helper for display 'Pure React Native' score widget implementation like in design
+ */
+
 const renderScoreTextWidget = ({ item, index, offsetState, width }: ItemInfo<ScoreData>) => {
   return (
     <ScoreTitleComponent

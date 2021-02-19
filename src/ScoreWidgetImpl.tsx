@@ -16,6 +16,10 @@ import {
 import { View } from "react-native";
 import React from "react";
 
+/**
+ * Helper for display 'FlatList' score widget implementation like in design
+ */
+
 export const createScoreWidgetImpl = () => {
   return (
     <View style={{ marginTop: 16, marginBottom: 20 }}>

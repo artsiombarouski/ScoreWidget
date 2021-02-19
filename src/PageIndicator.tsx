@@ -5,6 +5,10 @@ import { Animated, ColorValue, StyleSheet, TouchableOpacity, useWindowDimensions
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
+/**
+ * Component for display current scrolling position
+ */
+
 export interface PageIndicatorProps {
   pageCount: number;
   dotMinSize?: number;
@@ -26,7 +30,11 @@ export class PageIndicator extends React.Component<PageIndicatorProps, PageIndic
     this.state = {};
   }
 
-  shouldComponentUpdate(nextProps: Readonly<PageIndicatorProps>, nextState: Readonly<PageIndicatorState>, nextContext: any): boolean {
+  shouldComponentUpdate(
+    nextProps: Readonly<PageIndicatorProps>,
+    nextState: Readonly<PageIndicatorState>,
+    nextContext: any
+  ): boolean {
     return nextProps.pageCount != this.props.pageCount;
   }
 
@@ -69,10 +77,8 @@ export class PageIndicator extends React.Component<PageIndicatorProps, PageIndic
       );
     }
     return (
-      <View>
-        <View style={{ ...pageIndicatorStyle.container, ...containerStyle }}>
-          {dotsElements}
-        </View>
+      <View style={{ ...pageIndicatorStyle.container, ...containerStyle }}>
+        {dotsElements}
       </View>
     );
   }

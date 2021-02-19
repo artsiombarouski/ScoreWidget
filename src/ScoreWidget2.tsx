@@ -15,6 +15,14 @@ import {
   ViewStyle
 } from "react-native";
 
+/**
+ * Widget with 'Pure React Native' implementation for displaying scores
+ */
+
+const MOVE_THRESHOLD = Platform.OS == "ios" ? 6 : 8;
+const SWIPE_THRESHOLD = 10;
+const FLING_THRESHOLD = 50;
+
 export interface ItemInfo<T> {
   item: T;
   index: number;
@@ -39,10 +47,6 @@ interface ScoreWidget2State<T> {
   viewState?: LayoutRectangle;
   alignOffset: number;
 }
-
-const MOVE_THRESHOLD = Platform.OS == "ios" ? 6 : 8;
-const SWIPE_THRESHOLD = 10;
-const FLING_THRESHOLD = 50;
 
 export class ScoreWidget2<T> extends React.Component<ScoreWidget2Props<T>, ScoreWidget2State<T>> {
 

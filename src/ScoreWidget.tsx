@@ -17,6 +17,10 @@ import { ScoreTextComponent, ScoreTextComponentProps } from "./ScoreTextComponen
 import { ScoreData } from "./tempData";
 import { ScoreTitleComponent, ScoreTitleComponentProps } from "./ScoreTitleComponent";
 
+/**
+ * Widget with 'FlatList' implementation for displaying scores
+ */
+
 const renderScoreTextWidget =
   (itemHeight: number, scrollY: Animated.Value, props?: Partial<ScoreTextComponentProps>) =>
     ({ item, index }: ListRenderItemInfo<ScoreData>) => {
