@@ -17,6 +17,11 @@ export const appTheme = StyleSheet.create({
     fontFamily: "EuclidCircularA-Regular",
     color: "white"
   },
+  headlineTextStyle: {
+    fontFamily: "EuclidCircularA-Semibold",
+    color: "white",
+    fontSize: 20,
+  },
   button: {
     backgroundColor: appColors.secondary,
     borderRadius: 16,
@@ -66,3 +71,11 @@ export const optionsTheme = StyleSheet.create({
     flex: 1
   }
 });
+
+export const SCORE_TEXT_WIDTH = 128;
+export const SCORE_TEXT_PADDING = 12;
+export const SCORE_TEXT_HEIGHT = 100;
+
+export const SCORE_TITLE_CONTAINER_WIDTH = SCORE_TEXT_WIDTH + 60;
+export const SCORE_TITLE_WIDTH = SCORE_TEXT_WIDTH + 20;
+export const SCORE_VERTICAL_FADING_EDGE_WIDTH = SCORE_TEXT_WIDTH - SCORE_TEXT_PADDING;

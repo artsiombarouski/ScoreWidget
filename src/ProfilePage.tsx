@@ -2,21 +2,10 @@
 
 import React from "react";
 import { SafeAreaView, ScrollView, StatusBar, Text, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native";
-import {
-  AllScenes,
-  ArrowRight,
-  ContactUs,
-  Invite,
-  Join,
-  Like,
-  ScoreLeft,
-  ScoreRight,
-  Settings
-} from "../assets/images";
-import { ScoreWidget } from "./ScoreWidget";
-import { tempScoreData } from "./tempData";
+import { AllScenes, ArrowRight, ContactUs, Invite, Join, Like, Settings } from "../assets/images";
 import { appBarTheme, appColors, appTheme, optionsTheme } from "./styles";
-import { FadingEdges } from "./FadingEdges";
+import { createScoreWidget2Impl } from "./ScoreWidget2Impl";
+import { createScoreWidgetImpl } from "./ScoreWidgetImpl";
 
 /**
  * Options components
@@ -158,16 +147,20 @@ const UpgradeComponent = () => {
 };
 
 /**
- * Profile page
+ * Headline
  */
 
-const SCORE_TEXT_WIDTH = 128;
-const SCORE_TEXT_PADDING = 12;
-const SCORE_TEXT_HEIGHT = 100;
+const Headline = (props: { value?: string }) => {
+  return (
+    <Text style={{
+      ...appTheme.headlineTextStyle, paddingHorizontal: 20, paddingVertical: 12, textAlign: "center"
+    }}>{props.value}</Text>
+  );
+};
 
-const SCORE_TITLE_CONTAINER_WIDTH = SCORE_TEXT_WIDTH + 60;
-const SCORE_TITLE_WIDTH = SCORE_TEXT_WIDTH + 20;
-const SCORE_VERTICAL_FADING_EDGE_WIDTH = SCORE_TEXT_WIDTH - SCORE_TEXT_PADDING;
+/**
+ * Profile page
+ */
 
 export interface ProfilePageProps {
 }
@@ -187,64 +180,10 @@ export const ProfilePage = (props: ProfilePageProps) => {
         } />
         <GreetingComponent userName={"Andrew"} />
         <UpgradeComponent />
-        <View style={{ marginTop: 16, marginBottom: 20 }}>
-          <ScoreLeft style={{
-            position: "absolute",
-            transform: [{ translateX: -SCORE_TEXT_WIDTH / 2 }],
-            right: "50%"
-          }} />
-          <ScoreRight style={{
-            position: "absolute",
-            left: "50%",
-            transform: [{ translateX: SCORE_TEXT_WIDTH / 2 }]
-          }} />
-          <ScoreWidget
-            data={tempScoreData}
-            indicatorProps={{
-              color: "white",
-              containerStyle: {
-                marginTop: 20
-              }
-            }}
-            titleWidth={SCORE_TITLE_CONTAINER_WIDTH}
-            scoreHeight={SCORE_TEXT_HEIGHT}
-            scoreTextWidgetProps={{
-              containerStyle: {
-                width: SCORE_TEXT_WIDTH - SCORE_TEXT_PADDING * 2,
-                backgroundColor: "transparent"
-              },
-              textStyle: {
-                color: "white",
-                fontFamily: "EuclidCircularA-Bold",
-                fontSize: 56
-              }
-            }}
-            titleProps={{
-              containerStyle: {
-                height: 148
-              },
-              textStyle: {
-                maxWidth: SCORE_TITLE_WIDTH,
-                color: "white",
-                fontFamily: "EuclidCircularA-Bold",
-                fontSize: 14
-              }
-            }} />
-          <FadingEdges
-            color={appColors.background}
-            topStyle={{
-              width: SCORE_VERTICAL_FADING_EDGE_WIDTH,
-              left: undefined,
-              right: undefined
-            }}
-            bottomStyle={{
-              width: SCORE_VERTICAL_FADING_EDGE_WIDTH,
-              left: undefined,
-              right: undefined,
-              bottom: undefined,
-              top: SCORE_TEXT_HEIGHT - 30
-            }} />
-        </View>
+        <Headline value={"Example with FlatList"} />
+        {createScoreWidgetImpl()}
+        <Headline value={"Example with pure React Native"} />
+        {createScoreWidget2Impl()}
         <OptionRow icon={<Like style={optionsTheme.icon} />} title={"Favourite"} />
         <OptionRow icon={<AllScenes style={optionsTheme.icon} />} title={"All scenes"} />
         <OptionRow icon={<Join style={optionsTheme.icon} />} title={"Join loóna family"} />

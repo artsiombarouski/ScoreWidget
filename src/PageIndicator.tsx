@@ -69,8 +69,10 @@ export class PageIndicator extends React.Component<PageIndicatorProps, PageIndic
       );
     }
     return (
-      <View style={{ ...pageIndicatorStyle.container, ...containerStyle }}>
-        {dotsElements}
+      <View>
+        <View style={{ ...pageIndicatorStyle.container, ...containerStyle }}>
+          {dotsElements}
+        </View>
       </View>
     );
   }

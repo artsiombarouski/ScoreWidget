@@ -39,29 +39,37 @@ export class ScoreTextComponent extends React.Component<ScoreTextComponentProps,
     state: ScoreTextComponentState
   ) => (letter: string, index: number) => {
     return (
-      <Animated.Text
+      <Animated.View
+        renderToHardwareTextureAndroid={true}
         key={letter + index}
         style={{
-          ...(props.textStyle as {}),
-          ...scoreTextWidgetStyle.textStyle,
+          flex: 1,
           marginLeft: index == 0 ? 0 : "-100%",
-          textAlign: "center",
+          ...scoreTextWidgetStyle.container,
           ...props.letterTransform?.(index, state.letters.length, state.containerHeight)
-        }}
-        textBreakStrategy={"simple"}
-        adjustsFontSizeToFit={true}
-        minimumFontScale={0.01}
-        numberOfLines={1}>
-        <Text style={scoreTextWidgetStyle.hiddenTextStyle}>
-          {props.value.substring(0, index)}
+        }}>
+        <Text
+          style={{
+            ...(props.textStyle as {}),
+            ...scoreTextWidgetStyle.textStyle,
+            textAlign: "center",
+            flex: 1
+          }}
+          textBreakStrategy={"simple"}
+          adjustsFontSizeToFit={true}
+          minimumFontScale={0.01}
+          numberOfLines={1}>
+          <Text style={scoreTextWidgetStyle.hiddenTextStyle}>
+            {props.value.substring(0, index)}
+          </Text>
+          <Text>
+            {letter}
+          </Text>
+          <Text style={scoreTextWidgetStyle.hiddenTextStyle}>
+            {props.value.substring(index + 1)}
+          </Text>
         </Text>
-        <Text>
-          {letter}
-        </Text>
-        <Text style={scoreTextWidgetStyle.hiddenTextStyle}>
-          {props.value.substring(index + 1)}
-        </Text>
-      </Animated.Text>
+      </Animated.View>
     );
   };
 
